@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+<div class="about-page">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Section: Image -->
+            <div class="col-md-6">
+                <img src="~/images/aboutUs.jpg" alt="About Us" class="about-image" />
+            </div>
+
+            <!-- Right Section: Text -->
+            <div class="col-md-6">
+                <h1>About Us</h1>
+                <p>
+                    Welcome to the eBook Library, your one-stop platform for discovering and enjoying books!
+                    This project was developed as part of our Software Engineering studies, demonstrating our
+                    skills in designing, developing, and delivering user-centric web applications.
+                </p>
+                <p>
+                    We are passionate about technology and literature, and this platform represents the
+                    perfect union of those passions. Our mission is to make books accessible, engaging,
+                    and convenient for readers everywhere.
+                </p>
+                <h3>Meet the Creators</h3>
+                <ul>
+                    <li><strong>Matan Michaeli</strong></li>
+                    <li><strong>Bar Alon</strong></li>
+                </ul>
+                <p>
+                    We hope you enjoy using the platform as much as we enjoyed building it.
+                    Thank you for being a part of our journey!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .about-page {
+        padding: 50px 20px;
+        background-color: #1a1a1a;
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+        .about-page .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-page h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #f44336;
+        }
+
+        .about-page p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .about-page ul {
+            list-style: none;
+            padding: 0;
+        }
+
+            .about-page ul li {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+
+                .about-page ul li::before {
+                    content: '•';
+                    color: #f44336;
+                    margin-right: 8px;
+                    font-weight: bold;
+                }
+</style>

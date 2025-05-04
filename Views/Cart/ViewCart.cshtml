@@ -1,0 +1,285 @@
+﻿@model IEnumerable<WebApplication2.Models.CartItem>
+
+<div class="master-container">
+    <div class="card cart">
+        <label class="title">Your cart</label>
+
+        @if (!Model.Any())
+        {
+            <p class="empty-cart">Your cart is empty.</p>
+        }
+        else
+        {
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <div class="products">
+                @foreach (var item in Model)
+                {
+                    <div class="product" data-book-id="@item.BookId" data-purchase-price="@item.PriceBuy" data-borrow-price="@item.PriceBorrow">
+                        <div class="book-cover">
+                            <img src="@item.CoverImage" alt="@item.Title cover" />
+                        </div>
+                        <div>
+                            <span>@item.Title</span> <!-- Book title -->
+                            <p class="price-cell">@item.Price$</p> <!-- Price -->
+                            <select name="isBorrow" class="type-selector">
+                                <!-- Combo box -->
+                                @if (item.IsBorrow)
+                                {
+                                    <option value="true" selected>Borrow</option>
+                                    <option value="false">Purchase</option>
+                                }
+                                else
+                                {
+                                    <option value="true">Borrow</option>
+                                    <option value="false" selected>Purchase</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="remove-form">
+                            <form method="post" asp-action="RemoveFromCart" asp-controller="Cart">
+                                <input type="hidden" name="bookId" value="@item.BookId" />
+                                <button type="submit" class="remove-btn">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            <div class="card checkout">
+                <div class="checkout--footer">
+                    <label class="price"><sup>$</sup><span id="total-price">@Model.Sum(item => item.Price)</span></label>
+                    <form asp-action="Checkout" asp-controller="Cart" method="post">
+                        <button type="submit" class="checkout-btn">Proceed to Payment</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .master-container {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 5px;
+        padding: 20px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        background: #FFFFFF;
+        box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+        width: 100%;
+        height: 40px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        border-bottom: 1px solid #efeff3;
+        font-weight: 700;
+        font-size: 11px;
+        color: #63656b;
+    }
+
+    .cart {
+        border-radius: 19px;
+    }
+
+        .cart .products {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+            .cart .products .product {
+                display: grid;
+                grid-template-columns: 60px 1fr auto;
+                gap: 10px;
+                padding: 10px;
+                border-bottom: 1px solid #efeff3;
+            }
+
+                .cart .products .product span {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #47484b;
+                    margin-bottom: 8px;
+                    display: block;
+                }
+
+                .cart .products {
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #7a7c81;
+                    margin: 0;
+                }
+                .product p{
+                    margin: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #7a7c81;
+                }
+    .type-selector {
+        margin-top: 10px;
+        padding: 5px;
+        border: 1px solid #e5e5e5;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    .product div {
+        margin-left: 20px; /* Moves all content inside the <div> to the right */
+    }
+
+    .product span {
+        margin-left: 20px; /* Moves the book title */
+        display: block;
+    }
+
+    .type-selector {
+        margin-left: 20px; /* Moves the combo box */
+    }
+
+    .remove-btn {
+        background: #ff4444;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+        .remove-btn:hover {
+            background: #ff0000;
+        }
+
+    .checkout {
+        border-top: 1px solid #efeff3;
+    }
+
+    .checkout--footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #efeff3;
+    }
+
+    .price {
+        position: relative;
+        font-size: 22px;
+        color: #2B2B2F;
+        font-weight: 900;
+    }
+
+        .price sup {
+            font-size: 13px;
+        }
+
+    .product > * {
+        margin-left: 20px;
+    }
+
+
+    .checkout-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+        height: 36px;
+        background: linear-gradient(180deg, #4480FF 0%, #115DFC 50%, #0550ED 100%);
+        box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
+        border-radius: 7px;
+        border: 0;
+        outline: none;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .empty-cart {
+        padding: 20px;
+        text-align: center;
+        color: #63656b;
+    }
+
+    .alert-danger {
+        margin: 10px;
+        padding: 10px;
+        background-color: #ffe6e6;
+        border: 1px solid #ff9999;
+        color: #cc0000;
+        border-radius: 5px;
+    }
+
+    .book-cover img {
+        width: 70px; 
+        height: 100px; 
+        object-fit: cover; 
+        border-radius: 8px; 
+        display: block; 
+    }
+
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const products = document.querySelectorAll(".product");
+        const totalPriceElement = document.getElementById("total-price");
+
+        function updateTotalPrice() {
+            let total = 0;
+            products.forEach(product => {
+                const priceCell = product.querySelector(".price-cell");
+                const price = parseFloat(priceCell.textContent.replace("$", ""));
+                total += price;
+            });
+            totalPriceElement.textContent = total.toFixed(2);
+        }
+
+        products.forEach(product => {
+            const typeSelector = product.querySelector(".type-selector");
+            const priceCell = product.querySelector(".price-cell");
+            const purchasePrice = parseFloat(product.dataset.purchasePrice);
+            const borrowPrice = parseFloat(product.dataset.borrowPrice);
+
+            typeSelector.addEventListener("change", function () {
+                const isBorrow = typeSelector.value === "true";
+                const newPrice = isBorrow ? borrowPrice : purchasePrice;
+                priceCell.textContent = `${newPrice.toFixed(2)}$`;
+
+                fetch('/Cart/UpdateCartItem', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        bookId: product.dataset.bookId,
+                        isBorrow: isBorrow
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        console.log("Cart item updated successfully.");
+                    } else {
+                        console.error("Failed to update cart item.");
+                    }
+                });
+
+                updateTotalPrice();
+            });
+        });
+    });
+
+</script>

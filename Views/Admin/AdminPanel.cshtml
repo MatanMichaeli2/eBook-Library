@@ -1,0 +1,54 @@
+﻿<h1 style="text-align: center;">Admin Panel</h1>
+
+<div class="menu" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    <a asp-action="ManageBooks" class="menu-button">
+        <img src="/images/manage-books.png" alt="Manage Books">
+    </a>
+    <a asp-action="ManageUsers" class="menu-button">
+        <img src="/images/manage-users.png" alt="Manage Users">
+    </a>
+    <a asp-action="ManageWaitingList" class="menu-button">
+        <img src="/images/manage-waiting-list.png" alt="Manage Waiting List">
+    </a>
+</div>
+
+<style>
+    .menu-button {
+        display: block;
+        text-align: center;
+        background-color: transparent;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+    }
+
+        .menu-button img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        .menu-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    h1 {
+        font-family: Arial, sans-serif;
+        color: white;
+        padding-top: 50px
+    }
+
+
+</style>

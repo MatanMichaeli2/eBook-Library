@@ -1,0 +1,318 @@
+﻿@model IEnumerable<WebApplication2.Models.LibraryBook>
+
+<h1 class="welcome-message">Welcome @ViewBag.FirstName @ViewBag.LastName</h1>
+
+<h1 class="page-header">Your Personal Library</h1>
+
+@if (!Model.Any())
+{
+    <p>You have no books in your library.</p>
+}
+else
+{
+    <!-- Borrowed Books Section -->
+    <h2>Borrowed Books</h2>
+    @if (Model.Any(b => b.IsBorrowed))
+    {
+        <div class="carousel-container">
+            <button class="carousel-control-prev" type="button" data-bs-target="#borrowedBooksCarousel" data-bs-slide="prev">
+                <img src="~/images/left_arrow.png" alt="Previous" class="custom-arrow-icon">
+            </button>
+            <div id="borrowedBooksCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                <div class="carousel-inner">
+                    @{
+                        var borrowedBooks = Model.Where(b => b.IsBorrowed).ToList();
+                        for (int i = 0; i < borrowedBooks.Count; i += 4)
+                        {
+                            var group = borrowedBooks.Skip(i).Take(4);
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="row">
+                                    @foreach (var book in group)
+                                    {
+                                        <div class="col-md-3">
+                                            <div class="card book-card">
+                                                <img src="@book.CoverImage" alt="@book.Title" class="book-image" />
+                                                <div class="card-details">
+                                                    <h5>@book.Title</h5>
+                                                    <p>Author: @book.Author</p>
+                                                    <p>@book.RemainingTime</p>
+                                                    <a asp-controller="User" asp-action="RateBook" asp-route-id="@book.Id" class="btn btn-primary mb-2">Rate Book</a>
+                                                    <a asp-controller="User" asp-action="ReadBook" asp-route-id="@book.Id" class="btn btn-warning">Read Book</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#borrowedBooksCarousel" data-bs-slide="next">
+                <img src="~/images/right_arrow.png" alt="Next" class="custom-arrow-icon">
+            </button>
+        </div>
+    }
+    else
+    {
+        <p>No borrowed books in your library.</p>
+    }
+
+    <div class="section-separator"></div>
+
+    <!-- Purchased Books Section -->
+    <h2>Purchased Books</h2>
+    @if (Model.Any(b => !b.IsBorrowed))
+    {
+        <div class="carousel-container">
+            <button class="carousel-control-prev" type="button" data-bs-target="#purchasedBooksCarousel" data-bs-slide="prev">
+                <img src="~/images/left_arrow.png" alt="Previous" class="custom-arrow-icon">
+            </button>
+            <div id="purchasedBooksCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                <div class="carousel-inner">
+                    @{
+                        var purchasedBooks = Model.Where(b => !b.IsBorrowed).ToList();
+                        for (int i = 0; i < purchasedBooks.Count; i += 4)
+                        {
+                            var group = purchasedBooks.Skip(i).Take(4);
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="row">
+                                    @foreach (var book in group)
+                                    {
+                                        <div class="col-md-4">
+                                            <div class="card book-card">
+                                                <img src="@book.CoverImage" alt="@book.Title" class="book-image" />
+                                                <div class="card-details">
+                                                    <h5>@book.Title</h5>
+                                                    <p>Author: @book.Author</p>
+                                                    <a asp-action="RateBook" asp-route-id="@book.Id" class="btn btn-primary">Rate / Feedback</a>
+                                                    <form method="post" asp-action="DeleteBook" asp-controller="User" onsubmit="return confirmDeleteBook('@book.Title')">
+                                                        <input type="hidden" name="bookId" value="@book.Id" />
+                                                        <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                                                    </form>
+                                                    <a class="btn btn-success mt-2" href="#" onclick="selectFormat('@book.Id')">Download</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#purchasedBooksCarousel" data-bs-slide="next">
+                <img src="~/images/right_arrow.png" alt="Next" class="custom-arrow-icon">
+            </button>
+        </div>
+
+        <div class="modal fade" id="formatModal" tabindex="-1" aria-labelledby="formatModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formatModalLabel">Select Format</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="formatSelect" class="form-label">Choose a format to download:</label>
+                        <select id="formatSelect" class="form-select styled-select">
+                            <option value="epub">ePub</option>
+                            <option value="fb2">FB2</option>
+                            <option value="mobi">MOBI</option>
+                            <option value="pdf">PDF</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="confirmFormat()">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <p>No purchased books in your library.</p>
+    }
+}
+
+
+<script>
+    function confirmDeleteBook(bookTitle) {
+        return confirm(`Are you sure you want to delete the book "${bookTitle}"?`);
+    }
+</script>
+
+<script>
+        let selectedBookId = null;
+
+    function selectFormat(bookId) {
+        selectedBookId = bookId; // Store the book ID globally for later use
+        const modal = new bootstrap.Modal(document.getElementById('formatModal'));
+        modal.show(); // Show the modal
+    }
+
+    function confirmFormat() {
+        const formatSelect = document.getElementById('formatSelect');
+        const selectedFormat = formatSelect.value;
+
+        if (selectedFormat) {
+            window.location.href = `/User/DownloadBook?bookId=${selectedBookId}&format=${selectedFormat}`;
+        } else {
+            alert("Please select a format.");
+        }
+    }
+
+</script>
+
+<style>
+
+    .section-separator {
+        height: 10px;
+        background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.6), transparent);
+        margin: 30px 0; 
+        border-radius: 50%; 
+        box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.4);
+        opacity: 0.8; 
+    }
+
+
+
+    /* Center alignment for headers */
+    .page-header, .section-header, .welcome-message {
+        text-align: center;
+        padding-top: 15px;
+    }
+
+    /* Adjust welcome message style */
+    .welcome-message {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    /* General card styling */
+    .carousel-inner {
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    .col-md-4 {
+        flex: 0 0 33.333333%;
+        max-width: 20%;
+    }
+
+    .row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 90px;
+        justify-content: flex-start;
+        padding: 0 15px;
+        overflow: hidden;
+    }
+.book-card {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 400px;
+    width: 200px;
+    background-color: #222222;
+}
+
+.col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    }
+
+        .book-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Image styling */
+    .book-image {
+        width: 100%;
+        height: 70%; 
+        object-fit: contain; 
+        transition: opacity 0.3s ease;
+    }
+
+    .book-card:hover .book-image {
+        opacity: 0.9;
+    }
+
+    /* Details section */
+    .card-details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 10px;
+        box-sizing: border-box;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        text-align: center;
+
+    }
+
+    .book-card:hover .card-details {
+        transform: translateY(0);
+    }
+
+    /* Carousel arrows */
+    .carousel-control-prev, .carousel-control-next {
+        width: 300px; 
+        height:300px;
+        z-index: 10; 
+    }
+
+        .carousel-control-prev img, .carousel-control-next img {
+            width: 60px; 
+            height: auto;
+        }
+
+    .carousel-container {
+        position: relative;
+        padding: 0 100px;
+    }
+
+    /* Style for the combo box container */
+    .styled-select {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: linear-gradient(to right, #f7f7f7, #eaeaea);
+        color: #000; 
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Hover effect (when mouse hovers over the select box) */
+        .styled-select:hover {
+            border-color: #ff0000; 
+            background: linear-gradient(to right, #fff, #ffe6e6);
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.25); 
+            color: #000; 
+        }
+
+
+
+        /* Option text style */
+        .styled-select option {
+            padding: 10px;
+            font-size: 14px;
+            color: #000; 
+            background: #fff; 
+        }
+
+    #formatModal {
+        color: #000;
+    }
+</style>

@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="~/images/ebook_icon.png" type="image/png" />
+    <title>@ViewData["Title"] - eBook Library</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+
+
+        #logoutForm button:focus {
+            outline: none; 
+            box-shadow: none; 
+        }
+
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #121212;
+            border-bottom: 2px solid #e63946;
+            position: fixed; 
+            top: 0; 
+            z-index: 1030; 
+            width: 100%;
+        }
+
+        .navbar-brand img {
+            height: 60px;
+            width: auto;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 10px 15px;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link.active {
+                background-color: #e63946;
+                color: #ffffff;
+                border-radius: 5px;
+            }
+
+
+        .navbar-toggler-icon {
+            background-color: #ffffff;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+        /* Footer Styling */
+        .footer {
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px 0;
+            margin-top: auto; /* Add this */
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+            .footer-links li {
+                display: inline;
+            }
+
+            .footer-links a {
+                color: #e63946;
+                text-decoration: none;
+                font-size: 1rem;
+            }
+
+                .footer-links a:hover {
+                    color: #d32f2f;
+                }
+
+        .footer p {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/ebook_logo.png" alt="eBook Library Logo" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Library" asp-action="BookGallery">Book Gallery</a>
+                        </li>
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="User" asp-action="PersonalLibrary">Personal Library</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link position-relative" asp-area="" asp-controller="Cart" asp-action="ViewCart">
+                                    <img src="~/images/Cart.png" alt="Cart" />
+                                </a>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <form id="logoutForm" asp-area="" asp-controller="Account" asp-action="Logout" method="post" onsubmit="return confirm('Are you sure you want to log out?');">
+                                    <button type="submit" class="btn btn-link nav-link" style="color: #ffffff;">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid p-0">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <ul class="footer-links">
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="FAQ">FAQ's</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+            </ul>
+            <p>&copy; 2025 eBook Library. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+</html>
+
+
+
+

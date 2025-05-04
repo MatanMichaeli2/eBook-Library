@@ -1,0 +1,367 @@
+﻿@model IEnumerable<WebApplication2.Models.CartItem>
+
+<h1>Checkout</h1>
+<p>Your total price: <strong>@Model.Sum(item => item.Price)$</strong></p>
+
+<!-- Popup Notifications -->
+@if (TempData["PopupSuccessMessage"] != null)
+{
+    <div id="popup-success" class="alert alert-success position-fixed bottom-0 end-0 m-3" style="z-index: 1050;">
+        @TempData["PopupSuccessMessage"]
+    </div>
+}
+
+@if (TempData["PopupErrorMessage"] != null)
+{
+    <div id="popup-error" class="alert alert-danger position-fixed bottom-0 end-0 m-3" style="z-index: 1050;">
+        @TempData["PopupErrorMessage"]
+    </div>
+}
+<div class="payment-wrapper">
+    <div class="payment-container">
+        <!-- Payment Options -->
+        <div class="payment-options">
+            <div id="paypal-button-container" class="paypal-buttons"></div>
+            <div class="divider-container">
+                <span class="divider-text">or pay using credit card</span>
+            </div>
+        </div>
+
+        <!-- Credit Card Section -->
+        <div id="credit-card-section">
+            <form id="checkoutForm" method="post" asp-action="ProcessPayment" asp-controller="Cart" class="credit-card-form">
+                <div class="input-group">
+                    <label for="creditCardOwnerName">Card holder full name:</label>
+                    <input id="creditCardOwnerName" name="creditCardOwnerName" type="text" placeholder="Enter your full name" required />
+                    <small id="nameError" class="error-message">Cardholder name must contain only letters and spaces.</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="cardHolderID">Cardholder ID Number:</label>
+                    <input id="cardHolderID" name="cardHolderID" type="text" placeholder="Enter your ID number" maxlength="9" required />
+                    <small id="idError" class="error-message">Cardholder ID must contain exactly 9 digits.</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="creditCardNumber">Card Number:</label>
+                    <input id="creditCardNumber" name="creditCardNumber" type="text" placeholder="0000 0000 0000 0000" maxlength="16" required />
+                    <small id="cardNumberError" class="error-message">Credit card number must contain exactly 16 digits.</small>
+                </div>
+                <div class="input-group">
+                    <label for="creditCardExpDate">Expiry Date / CVV:</label>
+                    <div class="split">
+                        <input id="creditCardExpDate" name="creditCardExpDate" type="text" placeholder="01/23" required />
+                        <input id="creditCardCVV" name="creditCardCVV" type="text" placeholder="CVV" maxlength="3" required />
+                        <img id="cvvImage" src="~/images/CVV.png" alt="CVV Example" class="cvv-image" />
+                    </div>
+                    <small id="expDateError" class="error-message">Expiration date must be in MM/YY format.</small>
+                    <small id="cvvError" class="error-message">CVV must contain exactly 3 digits.</small>
+                </div>
+
+                <button type="submit" class="checkout-btn">Checkout</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const checkoutForm = document.getElementById("checkoutForm");
+            const cardNumberField = document.getElementById("creditCardNumber");
+            const expDateField = document.getElementById("creditCardExpDate");
+            const cvvField = document.getElementById("creditCardCVV");
+            const idField = document.getElementById("cardHolderID");
+            const cardHolderNameField = document.getElementById("creditCardOwnerName");
+            const cardHolderNameError = document.getElementById("nameError");
+            const cardNumberError = document.getElementById("cardNumberError");
+            const expDateError = document.getElementById("expDateError");
+            const cvvError = document.getElementById("cvvError");
+            const idError = document.getElementById("idError");
+
+        // Helper: Validate expiration date format and if it's in the future
+        function isValidExpiryDate(dateStr) {
+            const regex = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY format
+            if (!regex.test(dateStr)) return false;
+
+            const [month, year] = dateStr.split('/').map(Number);
+            const currentYear = new Date().getFullYear() % 100;
+            const currentMonth = new Date().getMonth() + 1;
+
+            return year > currentYear || (year === currentYear && month >= currentMonth);
+        }
+
+        // Form submission validation
+        checkoutForm.addEventListener("submit", function (e) {
+            let isValid = true;
+
+                // Validate Cardholder Name (letters and spaces only)
+    if (!/^[a-zA-Z\s]+$/.test(cardHolderNameField.value.trim())) {
+        cardHolderNameError.style.display = "inline";
+        cardHolderNameField.classList.add("is-invalid");
+        isValid = false;
+    } else {
+        cardHolderNameError.style.display = "none";
+        cardHolderNameField.classList.remove("is-invalid");
+    }
+
+            // Validate Card Number (16 digits)
+            if (!/^\d{16}$/.test(cardNumberField.value.trim())) {
+                cardNumberError.style.display = "inline";
+                cardNumberField.classList.add("is-invalid");
+                isValid = false;
+            } else {
+                cardNumberError.style.display = "none";
+                cardNumberField.classList.remove("is-invalid");
+            }
+
+            // Validate Cardholder ID (9 digits only)
+            if (!/^\d{9}$/.test(idField.value.trim())) {
+                idError.style.display = "inline";
+                idField.classList.add("is-invalid");
+                isValid = false;
+            } else {
+                idError.style.display = "none";
+                idField.classList.remove("is-invalid");
+            }
+
+            // Validate Expiration Date (MM/YY and in the future)
+            if (!isValidExpiryDate(expDateField.value.trim())) {
+                expDateError.style.display = "inline";
+                expDateField.classList.add("is-invalid");
+                isValid = false;
+            } else {
+                expDateError.style.display = "none";
+                expDateField.classList.remove("is-invalid");
+            }
+
+            // Validate CVV (3 digits)
+            if (!/^\d{3}$/.test(cvvField.value.trim())) {
+                cvvError.style.display = "inline";
+                cvvField.classList.add("is-invalid");
+                isValid = false;
+            } else {
+                cvvError.style.display = "none";
+                cvvField.classList.remove("is-invalid");
+            }
+
+            // Prevent submission if any field is invalid
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
+
+
+
+        // CVV image visibility
+        cvvField.addEventListener("focus", function () {
+            cvvImage.style.display = "block";
+        });
+
+        cvvField.addEventListener("blur", function () {
+            cvvImage.style.display = "none";
+        });
+
+        const splitContainer = cvvField.closest(".split");
+
+        // Highlight split container on CVV focus
+        cvvField.addEventListener("focus", function () {
+            splitContainer.classList.add("focused");
+        });
+
+        cvvField.addEventListener("blur", function () {
+            splitContainer.classList.remove("focused");
+        });
+                
+    });
+            document.addEventListener("DOMContentLoaded", function () {
+        paypal.Buttons({
+            createOrder: function (data, actions) {
+                // Set up the transaction details
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: "@Model.Sum(item => item.Price)" // Dynamically pass the cart total
+                        }
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+                // Capture the transaction
+                return actions.order.capture().then(function (details) {
+                    // Send a request to the server to complete the payment and update the database
+                    fetch('/Cart/CompletePayment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value // CSRF Token
+                        },
+                        body: JSON.stringify({ paymentId: details.id }) // Send the PayPal payment ID
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                        alert('Transaction completed by ' + details.payer.name.given_name);
+                        console.log(result);
+                        window.location.href = '/Cart/PaymentNotification';
+                            return response.json();
+                        } else {
+                            throw new Error("Failed to complete the payment on the server.");
+                        }
+                    })
+                    .then(result => {
+                        alert('Transaction completed by ' + details.payer.name.given_name);
+                        console.log(result); 
+                        window.location.href = '/Cart/PaymentNotification';
+                    })
+                });
+            },
+            onError: function (err) {
+                console.error('PayPal Checkout error:', err);
+                alert('An error occurred during the PayPal checkout process.');
+            }
+        }).render('#paypal-button-container');
+    });
+
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=ASg5PKccXItLN23DIBdE2ZitB5TfxnHqCLTewR0iuqeXInUt0EtPZXpmjbdfbBiBGlaNf5msPCPiAlw6&currency=USD"></script>
+
+
+<style>
+    .payment-wrapper {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+.payment-container {
+    background: #fff;
+    color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    text-align: center;
+
+}
+
+	.paypal-buttons {
+		margin-bottom: 10px;
+	}
+
+    #credit-card-section {
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+
+    .payment-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .divider-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .divider-text {
+        color: #999;
+        font-size: 14px;
+        text-align: center;
+        margin: 0 10px;
+        white-space: nowrap;
+    }
+
+    .divider-container::before,
+    .divider-container::after {
+        content: "";
+        flex-grow: 1;
+        height: 1px;
+        background: #ccc;
+    }
+
+
+
+.credit-card-form {
+    text-align: left;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-group .split {
+    display: flex;
+    gap: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+
+.checkout-btn {
+    background: linear-gradient(to bottom, #000, #333);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.checkout-btn:hover {
+    background: linear-gradient(to bottom, #333, #000);
+}
+
+    .split {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+    }
+
+    .cvv-image {
+        display: none;
+        width: 150px;
+        height: auto;
+        margin-left: 10px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    .split.focused .cvv-image {
+        display: block;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+
+</style>
+

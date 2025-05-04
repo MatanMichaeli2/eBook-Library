@@ -1,0 +1,126 @@
+﻿@model IEnumerable<WebApplication2.Models.WaitingList>
+
+<div class="manage-waitinglist-wrapper">
+    <div class="header">
+        <h1>Manage Waiting List</h1>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <p class="no-waitinglist-msg">No entries found in the waiting list.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="table-header">
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Book ID</th>
+                        <th>User ID</th>
+                        <th>Added Date</th>
+                        <th>Position</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var entry in Model)
+                    {
+                        <tr>
+                            <td>@entry.Book?.Title</td>
+                            <td>@entry.BookId</td>
+                            <td>@entry.UserId</td>
+                            <td>@entry.AddedDate.ToString("g")</td>
+                            <td>@entry.Position</td>
+                            <td>
+                                <form method="post" asp-action="DeleteFromWaitingList" asp-controller="Admin" class="form-inline" onsubmit="return confirm('Are you sure you want to delete this user from the waiting list?');">
+                                    <input type="hidden" name="id" value="@entry.WaitingListId" />
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<style>
+    .manage-waitinglist-wrapper {
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .no-waitinglist-msg {
+        color: #555;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table-header {
+        background-color: #222222;
+        color: #fff;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn-danger {
+        background-color: #ff4757;
+        border: none;
+        color: #fff;
+        border-radius: 20px;
+        padding: 5px 10px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-danger:hover {
+            background-color: #505050;
+        }
+
+    .btn-sm {
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+</style>

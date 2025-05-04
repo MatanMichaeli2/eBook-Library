@@ -1,0 +1,137 @@
+﻿@model WebApplication2.Models.User
+
+<div class="page-container">
+    <div class="form-wrapper">
+        <div class="header">
+            <h1>Register</h1>
+        </div>
+        <form asp-action="Register" method="post" id="registerForm">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label for="FirstName">First Name:</label>
+                <input type="text" id="FirstName" name="FirstName" class="form-control" value="@Model?.FirstName" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="LastName">Last Name:</label>
+                <input type="text" id="LastName" name="LastName" class="form-control" value="@Model?.LastName" required />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="BirthDate">Birth Date:</label>
+                <input type="date" id="BirthDate" name="BirthDate" class="form-control" value="@Model?.BirthDate.ToString("yyyy-MM-dd")" required />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="ID">ID:</label>
+                <input type="text" id="ID" name="ID" maxlength="9" class="form-control" value="@Model?.ID" required />
+                <span asp-validation-for="ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" name="Email" class="form-control" value="@Model?.Email" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="PasswordHash" class="form-control" oninput="validatePassword()" required />
+                <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                <div id="strengthBar" style="background-color: #ddd; width: 100%; height: 10px; border-radius: 5px; margin-top: 5px;">
+                    <div id="strengthIndicator" style="height: 100%; width: 0%; background-color: #ddd; border-radius: 5px;"></div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>    
+    function validatePassword() {
+        const password = document.getElementById("Password").value;
+        const strengthBar = document.getElementById("strengthBar");
+        const strengthIndicator = document.getElementById("strengthIndicator");
+
+        const weakRegex = /.{6,}/;
+        const mediumRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+        const strongRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!#$%^&*]).{6,}$/;
+
+        let strength = 0;
+
+        if (weakRegex.test(password)) strength += 1;
+        if (mediumRegex.test(password)) strength += 1;
+        if (strongRegex.test(password)) strength += 1;
+
+        if (strength === 0) {
+            strengthIndicator.style.width = "0%";
+            strengthIndicator.style.backgroundColor = "#ddd";
+        } else if (strength === 1) {
+            strengthIndicator.style.width = "33%";
+            strengthIndicator.style.backgroundColor = "red";
+        } else if (strength === 2) {
+            strengthIndicator.style.width = "66%";
+            strengthIndicator.style.backgroundColor = "orange";
+        } else if (strength === 3) {
+            strengthIndicator.style.width = "100%";
+            strengthIndicator.style.backgroundColor = "green";
+        }
+    }
+</script>
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+                background-color: #222222;
+        font-family: Arial, sans-serif;
+        padding-top: 84px;
+    }
+
+
+    .page-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+    }
+
+    .form-wrapper {
+        background-color: #f9f9f9; 
+        color: black; 
+        padding: 20px;
+        border-radius: 30px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+        width: 50%; 
+        max-width: 600px; 
+    }
+
+    .header h1 {
+        text-align: center;
+        font-size: 5 rem;
+        margin-bottom: 20px;
+        color: black;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+                
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+</style>

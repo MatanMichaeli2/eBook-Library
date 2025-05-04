@@ -1,0 +1,139 @@
+﻿@model WebApplication2.Models.Book
+
+<div class="page-container">
+    <div class="form-wrapper">
+        <div class="header">
+            <h1>Edit Book</h1>
+        </div>
+        <form asp-action="EditBook" method="post" id="editBookForm">
+            <input type="hidden" name="BookId" value="@Model.BookId" />
+            <input type="hidden" name="Formats" value="@Model.Formats" />
+
+            <div class="form-group">
+                <label for="Title">Title:</label>
+                <input type="text" id="Title" name="Title" class="form-control" value="@Model.Title" required />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Author">Author:</label>
+                <input type="text" id="Author" name="Author" class="form-control" value="@Model.Author" required />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Publisher">Publisher:</label>
+                <input type="text" id="Publisher" name="Publisher" class="form-control" value="@Model.Publisher" required />
+                <span asp-validation-for="Publisher" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="YearPublished">Year Published:</label>
+                <input type="number" id="YearPublished" name="YearPublished" class="form-control" value="@Model.YearPublished" required />
+                <span asp-validation-for="YearPublished" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Genre">Genre:</label>
+                <input type="text" id="Genre" name="Genre" class="form-control" value="@Model.Genre" required />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="PriceBuy">Price (Buy):</label>
+                <input type="number" id="PriceBuy" name="PriceBuy" step="0.01" class="form-control" value="@Model.PriceBuy" required />
+                <span asp-validation-for="PriceBuy" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="PriceBorrow">Price (Borrow):</label>
+                <input type="number" id="PriceBorrow" name="PriceBorrow" step="0.01" class="form-control" value="@Model.PriceBorrow" required />
+                <span asp-validation-for="PriceBorrow" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="CopiesAvailable">Copies Available:</label>
+                <input type="number" id="CopiesAvailable" name="CopiesAvailable" class="form-control" value="@Model.CopiesAvailable" required />
+                <span asp-validation-for="CopiesAvailable" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="AgeLimit">Age Limit:</label>
+                <input type="number" id="AgeLimit" name="AgeLimit" class="form-control" value="@Model.AgeLimit" required />
+                <span asp-validation-for="AgeLimit" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="CoverImage">Cover Image URL:</label>
+                <input type="url" id="CoverImage" name="CoverImage" class="form-control" value="@Model.CoverImage" required />
+                <span asp-validation-for="CoverImage" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Edit Details</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+
+    .page-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 100px);
+        margin: 20px 0;
+        padding-top: 20px;
+    }
+
+    .form-wrapper {
+        background-color: #f9f9f9;
+        color: black;
+        padding: 15px;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        width: 40%;
+        max-width: 500px;
+    }
+
+    .header h1 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: black;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-primary {
+        padding: 8px 15px;
+        font-size: 14px;
+        border-radius: 4px; 
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .text-danger {
+        font-size: 0.8rem;
+        color: red;
+    }
+
+
+</style>

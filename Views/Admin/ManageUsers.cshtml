@@ -1,0 +1,192 @@
+﻿@model IEnumerable<WebApplication2.ViewModels.UserCreditCardViewModel>
+
+<div class="manage-users-wrapper">
+    <div class="header">
+        <h1>Manage Users &amp; Credit Cards</h1>
+    </div>
+
+    <!-- Display Success or Error Messages -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <p class="no-users-msg">No users with saved credit cards found.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="table-header">
+                    <tr>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Role</th>
+                        <th>Cardholder Name</th>
+                        <th>Cardholder ID</th>
+                        <th>Card Number</th>
+                        <th>Expiry Date</th>
+                        <th>CVC</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var u in Model)
+                    {
+                        <tr>
+                            <td>@u.Email</td>
+                            <td>@u.FirstName</td>
+                            <td>@u.LastName</td>
+                            <td>@u.Role</td>
+                            <td>@u.CardHolderName</td>
+                            <td>@u.CardHolderID</td>
+                            <td>@u.CardNumber</td>
+                            <td>@u.ExpiryDate</td>
+                            <td>@u.CVC</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <!-- Change Role Form -->
+                                    <form method="post" asp-action="ChangeUserRole" asp-controller="Admin" class="form-inline">
+                                        <input type="hidden" name="id" value="@u.ID" />
+                                        <select name="newRole" class="form-select-sm">
+                                            <option value="User" @@(u.Role == "User" ? "selected" : "")>User</option>
+                                            <option value="Admin" @@(u.Role == "Admin" ? "selected" : "")>Admin</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-warning btn-sm mt-2">Change Role</button>
+                                    </form>
+
+                                    <!-- Delete User Form -->
+                                    <form method="post" asp-action="DeleteUser" asp-controller="Admin" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                        <input type="hidden" name="id" value="@u.ID" />
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete User</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<style>
+    .manage-users-wrapper {
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .no-users-msg {
+        color: #555;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table-header {
+        background-color: #222222;
+        color: #fff;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-inline {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .btn-warning {
+        background-color: #A9EB9E;
+        border: none;
+        color: #333;
+        border-radius: 20px;
+        padding: 5px 10px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-warning:hover {
+        background-color: #9e9e9e;
+    }
+
+    .btn-danger {
+        background-color: #ff4757;
+        border: none;
+        color: #fff;
+        border-radius: 20px;
+        padding: 5px 10px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        background-color: #505050;
+    }
+
+    .btn-sm {
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+
+    .text-danger {
+        color: #ff4757;
+        font-weight: bold;
+    }
+
+    .form-select-sm {
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .form-select-sm:focus {
+        outline: none;
+        border-color: #929292;
+        box-shadow: 0 0 5px rgba(146, 146, 146, 0.5);
+    }
+</style>

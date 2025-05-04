@@ -1,0 +1,90 @@
+﻿<div class="page-container">
+    <div class="login-box">
+        <h1>Login</h1>
+        <form asp-action="Login" method="post">
+            <div>
+                <label for="Email">Email:</label>
+                <input type="text" id="Email" name="email" placeholder="Enter your email" />
+            </div>
+            <div>
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="password" placeholder="Enter your password" />
+            </div>
+            <a href="@Url.Action("ForgotPassword", "Account")">Forgot your password?</a>
+            <div>
+                <input type="submit" value="Login" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #222222;
+        font-family: Arial, sans-serif;
+    }
+
+    .page-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+    }
+
+    .login-box label {
+        color: black; /* Make labels black */
+        display: block; /* Optional: ensures label text is on its own line */
+        margin-bottom: 5px; /* Optional: adds spacing between label and input */
+    }
+    .login-box {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+
+    }
+
+        .login-box h1 {
+            text-align: center;
+            font-size: 5 rem;
+            margin-bottom: 20px;
+            color: black;
+            font-weight: bold;
+        }
+
+
+
+        .login-box input[type="email"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            color: black; /* Make input text black */
+        }
+
+
+
+        .login-box input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .login-box input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+</style>

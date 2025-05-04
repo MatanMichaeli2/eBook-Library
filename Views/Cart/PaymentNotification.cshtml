@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Payment Status";
+}
+
+<div class="alert alert-success">
+    @TempData["PopupSuccessMessage"]
+</div>
+<div class="alert alert-danger">
+    @TempData["PopupErrorMessage"]
+</div>
+
+<script>
+    // Redirect to Personal Library after 5 seconds
+    setTimeout(() => {
+        window.location.href = '/User/PersonalLibrary';
+    }, 5000);
+</script>

@@ -1,0 +1,306 @@
+﻿@model IEnumerable<WebApplication2.Models.Book>
+
+<div class="gallery-header">
+    <h1>eBook Gallery</h1>
+    <p class="book-count">
+        Total Books Available: <span id="total-books">@ViewBag.TotalBooks</span>
+    </p>
+</div>
+
+
+<!-- Sorting, Filtering, and Search Options -->
+<form method="get" asp-action="BookGallery">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label for="search">Search</label>
+            <input type="text" id="search" name="searchQuery" class="form-control" placeholder="Search by title, author, or publisher" />
+        </div>
+        <div class="col-md-3">
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre" class="form-control">
+                <option value="">All</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Mystery">Mystery</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="ageLimit">Age Limit</label>
+            <select id="ageLimit" name="ageLimit" class="form-control">
+                <option value="">All Ages</option>
+                <option value="0">0+</option>
+                <option value="6">6+</option>
+                <option value="12">12+</option>
+                <option value="16">16+</option>
+                <option value="18">18+</option>
+                <option value="21">21+</option>
+            </select>
+        </div>
+
+
+        <div class="col-md-3">
+            <label for="sortBy">Sort By</label>
+            <select id="sortBy" name="sortBy" class="form-control">
+                <option value="priceLowHigh">Price: Low to High</option>
+                <option value="priceHighLow">Price: High to Low</option>
+                <option value="mostPopular">Most Popular</option>
+                <option value="yearPublished">Year of Publishing</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="onSale">On Sale</label>
+            <input type="checkbox" id="onSale" name="onSale" value="true" class="form-check-input" />
+        </div>
+        <div class="col-md-3 align-self-end mt-4">
+            <button type="submit" class="btn-search">Search & Filter</button>
+
+        </div>
+    </div>
+</form>
+
+<!-- Display Error Message -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="error-message" class="alert alert-danger position-fixed top-0 end-0 m-3" style="z-index: 1050;">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Display Popup Message -->
+@if (TempData["PopupMessage"] != null)
+{
+    <div id="popup-message" class="alert alert-success position-fixed bottom-0 end-0 m-3" style="z-index: 1050;">
+        @TempData["PopupMessage"]
+    </div>
+}
+
+<!-- Book List -->
+<div class="row">
+    @foreach (var book in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card book-card">
+                <!-- Image -->
+                <img src="@book.CoverImage" alt="@book.Title" class="book-image" />
+
+                <!-- Hover Details -->
+                <div class="card-details">
+                    <h5>@book.Title</h5>
+                    <p>Author: @book.Author</p>
+                    <p>Publisher: @book.Publisher</p>
+                    <p>Year: @book.YearPublished</p>
+                    <p>
+                        Price:
+                        @if (book.DiscountedPrice.HasValue && book.DiscountEndDate.HasValue && book.DiscountEndDate > DateTime.Now)
+                        {
+                            <span class="text-danger">
+                                <s>@($"{book.PriceBuy}$")</s> @($"{book.DiscountedPrice.Value}$")
+                            </span>
+                        }
+                        else
+                        {
+                            <span>@($"{book.PriceBuy}$")</span>
+                        }
+                    </p>
+
+                    <!-- Borrow Button -->
+                    @if (book.IsBorrowable)
+                    {
+                        @if (book.CopiesAvailable > 0)
+                        {
+                            <form method="post" asp-action="AddToCart" asp-controller="Cart">
+                                <input type="hidden" name="bookId" value="@book.BookId" />
+                                <input type="hidden" name="title" value="@book.Title" />
+                                <input type="hidden" name="priceBuy" value="@book.PriceBuy" />
+                                <input type="hidden" name="priceBorrow" value="@book.PriceBorrow" />
+                                <input type="hidden" name="isBorrow" value="true" />
+                                <button type="submit" class="btn btn-success">Borrow (@book.PriceBorrow$)</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <!-- Trigger confirmation dialog if no copies are available -->
+                            <button class="btn btn-warning"
+                                    onclick="addToWaitingList(@book.BookId, '@book.Title')">
+                                Add to Waiting List
+                            </button>
+                        }
+                    }
+
+                    <!-- Purchase Button -->
+                    <form method="post" asp-action="AddToCart" asp-controller="Cart">
+                        <input type="hidden" name="bookId" value="@book.BookId" />
+                        <input type="hidden" name="title" value="@book.Title" />
+                        <input type="hidden" name="priceBuy"
+                               value="@(book.DiscountedPrice.HasValue && book.DiscountEndDate.HasValue && book.DiscountEndDate > DateTime.Now ? book.DiscountedPrice.Value : book.PriceBuy)" />
+                        <input type="hidden" name="priceBorrow" value="@book.PriceBorrow" />
+                        <input type="hidden" name="isBorrow" value="false" />
+                        <button type="submit" class="btn btn-info">
+                            Purchase @if (book.DiscountedPrice.HasValue && book.DiscountEndDate.HasValue && book.DiscountEndDate > DateTime.Now)
+                            {
+                                @($"({book.DiscountedPrice.Value}$)")
+                            }
+                            else
+                            {
+                                @($"({book.PriceBuy}$)")
+                            }
+                        </button>
+                    </form>
+
+                    <!-- View Feedback Button -->
+                    <form method="get" asp-action="ViewFeedbacks" asp-controller="User">
+                        <input type="hidden" name="bookId" value="@book.BookId" />
+                        <button type="submit" class="btn btn-primary">View Feedbacks</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    // JavaScript to hide the popup and error messages after 5 seconds
+    document.addEventListener("DOMContentLoaded", function () {
+        const popup = document.getElementById("popup-message");
+        if (popup) {
+            setTimeout(() => popup.remove(), 5000);
+        }
+
+        const error = document.getElementById("error-message");
+        if (error) {
+            setTimeout(() => error.remove(), 5000);
+        }
+    });
+
+        // JavaScript function to show a confirmation dialog
+    function addToWaitingList(bookId, bookTitle) {
+        if (confirm(`The book "${bookTitle}" is unavailable. Would you like to join the waiting list?`)) {
+            const form = document.createElement('form');
+            form.method = 'post';
+            form.action = '/User/AddToWaitingList';
+            
+            const bookIdInput = document.createElement('input');
+            bookIdInput.type = 'hidden';
+            bookIdInput.name = 'bookId';
+            bookIdInput.value = bookId;
+            
+            form.appendChild(bookIdInput);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+
+     function updateBookCount() {
+        fetch('/Book/GetTotalBooksCount')
+            .then(response => response.json())
+            .then(data => {
+                const totalBooksElement = document.getElementById('total-books');
+                totalBooksElement.textContent = data.totalBooks;
+            })
+            .catch(error => console.error('Error fetching book count:', error));
+    }
+
+    // Call the function every 10 seconds to update the count dynamically
+    setInterval(updateBookCount, 10000);
+</script>
+
+<style>
+    .gallery-header {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+        text-align: center;
+        min-height: 200px;
+        margin: 20px 0; 
+    }
+
+        .gallery-header h1 {
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+        }
+
+        .gallery-header .book-count {
+            font-size: 1.2rem;
+            color: #555; 
+        }
+    /* General card styling */
+    .book-card {
+        position: relative;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 400px; 
+        backround-color: #222222;
+    }
+
+        .book-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Image styling */
+    .book-image {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        transition: opacity 0.3s ease;
+    }
+
+    .book-card:hover .book-image {
+        opacity: 0.9;
+    }
+
+    /* Details section */
+    .card-details {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 15px;
+        box-sizing: border-box;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+
+    .book-card:hover .card-details {
+        transform: translateY(0);
+    }
+
+    /* Grid layout for images */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .col-md-4 {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    /* Buttons inside details */
+    .card-details button {
+        margin: 5px 0;
+        width: 90%; 
+        font-size: 0.9rem;
+    }
+
+    .btn-search {
+        background-color: #e63946;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-search:hover {
+            background-color: #d32f2f;
+        }
+</style>
