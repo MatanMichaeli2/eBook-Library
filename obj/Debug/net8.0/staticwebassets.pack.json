@@ -1,0 +1,449 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\eBook_project.bundle.scp.css",
+      "PackagePath": "staticwebassets\\eBook_project.s98jprq0s8.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\books\\epub\\Book.epub",
+      "PackagePath": "staticwebassets\\books\\epub\\Book.epub"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\books\\fb2\\Book.fb2",
+      "PackagePath": "staticwebassets\\books\\fb2\\Book.fb2"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\books\\mobi\\Book.mobi",
+      "PackagePath": "staticwebassets\\books\\mobi\\Book.mobi"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\books\\pdf\\Book.pdf",
+      "PackagePath": "staticwebassets\\books\\pdf\\Book.pdf"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\1984.jpg",
+      "PackagePath": "staticwebassets\\images\\1984.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\CVV.png",
+      "PackagePath": "staticwebassets\\images\\CVV.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\Cart.png",
+      "PackagePath": "staticwebassets\\images\\Cart.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\LandingPage.png",
+      "PackagePath": "staticwebassets\\images\\LandingPage.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\LandingPage2.jpg",
+      "PackagePath": "staticwebassets\\images\\LandingPage2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\PurchaseBook.png",
+      "PackagePath": "staticwebassets\\images\\PurchaseBook.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\aboutUs.jpg",
+      "PackagePath": "staticwebassets\\images\\aboutUs.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\backround.jpg",
+      "PackagePath": "staticwebassets\\images\\backround.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\backround.png",
+      "PackagePath": "staticwebassets\\images\\backround.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\bravenewworld.jpg",
+      "PackagePath": "staticwebassets\\images\\bravenewworld.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\catcherintherye.jpg",
+      "PackagePath": "staticwebassets\\images\\catcherintherye.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\clashofkings.jpg",
+      "PackagePath": "staticwebassets\\images\\clashofkings.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\dancewithdragons.jpg",
+      "PackagePath": "staticwebassets\\images\\dancewithdragons.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\davincicode.jpg",
+      "PackagePath": "staticwebassets\\images\\davincicode.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\doriangray.jpg",
+      "PackagePath": "staticwebassets\\images\\doriangray.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\ebook_icon.png",
+      "PackagePath": "staticwebassets\\images\\ebook_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\ebook_logo.png",
+      "PackagePath": "staticwebassets\\images\\ebook_logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\faultinourstars.jpg",
+      "PackagePath": "staticwebassets\\images\\faultinourstars.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\feastforcrows.jpg",
+      "PackagePath": "staticwebassets\\images\\feastforcrows.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\frankenstein.jpg",
+      "PackagePath": "staticwebassets\\images\\frankenstein.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\gameofthrones.jpg",
+      "PackagePath": "staticwebassets\\images\\gameofthrones.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\gatsby.jpg",
+      "PackagePath": "staticwebassets\\images\\gatsby.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\gonegirl.jpg",
+      "PackagePath": "staticwebassets\\images\\gonegirl.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\harrypotter.jpg",
+      "PackagePath": "staticwebassets\\images\\harrypotter.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\hungergames.jpg",
+      "PackagePath": "staticwebassets\\images\\hungergames.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\left_arrow.png",
+      "PackagePath": "staticwebassets\\images\\left_arrow.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\littlewomen.jpg",
+      "PackagePath": "staticwebassets\\images\\littlewomen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\lordoftherings.jpg",
+      "PackagePath": "staticwebassets\\images\\lordoftherings.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\manage-books.png",
+      "PackagePath": "staticwebassets\\images\\manage-books.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\manage-users.png",
+      "PackagePath": "staticwebassets\\images\\manage-users.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\manage-waiting-list.png",
+      "PackagePath": "staticwebassets\\images\\manage-waiting-list.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\mobydick.jpg",
+      "PackagePath": "staticwebassets\\images\\mobydick.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\prideandprejudice.jpg",
+      "PackagePath": "staticwebassets\\images\\prideandprejudice.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\right_arrow.png",
+      "PackagePath": "staticwebassets\\images\\right_arrow.png"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\stormofswords.jpg",
+      "PackagePath": "staticwebassets\\images\\stormofswords.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\thealchemist.jpg",
+      "PackagePath": "staticwebassets\\images\\thealchemist.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\thebookthief.jpg",
+      "PackagePath": "staticwebassets\\images\\thebookthief.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\thehobbit.jpg",
+      "PackagePath": "staticwebassets\\images\\thehobbit.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\theshining.jpg",
+      "PackagePath": "staticwebassets\\images\\theshining.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\tokillamockingbird.jpg",
+      "PackagePath": "staticwebassets\\images\\tokillamockingbird.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\images\\warandpeace.jpg",
+      "PackagePath": "staticwebassets\\images\\warandpeace.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Administrator\\source\\repos\\WebApplication2\\WebApplication2\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.eBook_project.props",
+      "PackagePath": "build\\eBook_project.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.eBook_project.props",
+      "PackagePath": "buildMultiTargeting\\eBook_project.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.eBook_project.props",
+      "PackagePath": "buildTransitive\\eBook_project.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.eBook_project.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.eBook_project.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
