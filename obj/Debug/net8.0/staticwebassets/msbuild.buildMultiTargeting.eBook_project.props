@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\eBook_project.props" />
+</Project>
