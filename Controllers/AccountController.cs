@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Authentication;
@@ -81,88 +81,33 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        //// Process login
-        //[HttpPost]
-        //public IActionResult Login(string email, string password)
-        //{
-        //    var user = _context.Users.SingleOrDefault(u => u.Email == email);
-        //    if (user != null && user.PasswordHash == ComputeSha256Hash(password))
-        //    {
-        //        var claims = new List<Claim>
-        //        {
-        //            new Claim(ClaimTypes.Name, user.ID),
-        //            new Claim(ClaimTypes.Role, user.Role),
-        //            new Claim(ClaimTypes.Email, user.Email)
-        //        };
-
-        //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        //        var authProperties = new AuthenticationProperties
-        //        {
-        //            IsPersistent = true
-        //        };
-
-        //        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    ModelState.AddModelError("", "Invalid login credentials");
-        //    return View();
-        //}
-
         // Process login
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            // 1) Compute the hash for normal logins
-            var hash = ComputeSha256Hash(password);
-
-            // 2) Build a raw SQL query (VULNERABLE—only for demo purposes)
-            //    Note: no parentheses around clauses, so you can inject `' or 1=1--`
-            var sql =
-                "SELECT * FROM Users WHERE " +
-                $"Email = '{email}' AND PasswordHash = '{password}' " +
-                "OR " +
-                $"Email = '{email}' AND PasswordHash = '{hash}'";
-
-            // 3) Execute it
-            var user = _context.Users
-                        .FromSqlRaw(sql)
-                        .FirstOrDefault();
-
-            // 4) If any row is returned, sign them in
-            if (user != null)
+            var user = _context.Users.SingleOrDefault(u => u.Email == email);
+            if (user != null && user.PasswordHash == ComputeSha256Hash(password))
             {
                 var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name,  user.ID),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role,  user.Role),
-        };
-                var identity = new ClaimsIdentity(
-                    claims,
-                    CookieAuthenticationDefaults.AuthenticationScheme
-                );
-                // Note: .Wait() only because this is a sync action
-                HttpContext.SignInAsync(
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(identity)
-                ).Wait();
+                {
+                    new Claim(ClaimTypes.Name, user.ID),
+                    new Claim(ClaimTypes.Role, user.Role),
+                    new Claim(ClaimTypes.Email, user.Email)
+                };
 
-                // Redirect based on role
-                if (user.Role == "Admin")
-                    return RedirectToAction("AdminPanel", "Admin");
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true
+                };
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
                 return RedirectToAction("Index", "Home");
             }
-
-            // 5) Nothing matched → show error
             ModelState.AddModelError("", "Invalid login credentials");
             return View();
         }
-
-
-
-
 
 
         // Process logout
